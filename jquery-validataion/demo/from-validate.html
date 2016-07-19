@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <mate charset='utf-8'></mate>
+	<title>JQuery-validation demo | Bootstrap</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">简单的表单验证</h3>
+					</div>
+					<div class="panel-body">
+						<form id="signupForm" method="post" class="form-horizontal" action="">
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="firstname">姓名</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="firstname" name="firstname" placeholder="请输入姓名" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="username">用户名</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="email">邮箱</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="password">密码</label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="confirm_password">确认密码</label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="请确认密码" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-5 col-sm-offset-4">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" id="agree" name="agree" value="agree" />同意
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-9 col-sm-offset-4">
+									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">带有图标的表单验证</h3>
+					</div>
+					<div class="panel-body">
+						<form id="signupForm1" method="post" class="form-horizontal" action="">
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="firstname1">用户名</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="firstname1" name="firstname1" placeholder="请输入用户名" />
+								</div>
+							</div>
+                            
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="username1">姓名</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="username1" name="username1" placeholder="请输入姓名" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="email1">邮箱</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="email1" name="email1" placeholder="请输入邮箱" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="password1">密码</label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="password1" name="password1" placeholder="请输入密码" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="confirm_password1">确认密码</label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="confirm_password1" name="confirm_password1" placeholder="请确认密码" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-5 col-sm-offset-4">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" id="agree1" name="agree1" value="agree" />同意
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-9 col-sm-offset-4">
+									<button type="submit" class="btn btn-primary" name="signup1" value="Sign up">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript">
+		$.validator.setDefaults( {
+			submitHandler: function () {
+				alert( "提交表单" );
+			}
+		} );
+
+		$( document ).ready( function () {
+			$( "#signupForm" ).validate( {
+				rules: {
+					firstname: "required",
+					username: {
+						required: true,
+						minlength: 2
+					},
+					password: {
+						required: true,
+						minlength: 5
+					},
+					confirm_password: {
+						required: true,
+						minlength: 5,
+						equalTo: "#password"
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					agree: "required"
+				},
+				messages: {
+					firstname: "姓名不能为空",
+					username: {
+						required: "用户名不能为空",
+						minlength: "用户名不能少于2位"
+					},
+					password: {
+						required: "密码不能为空",
+						minlength: "密码不能少于5位"
+					},
+					confirm_password: {
+						required: "密码不能为空",
+						minlength: "密码不能少于5位",
+						equalTo: "请保持两次输入密码相同"
+					},
+					email: "请输入正确的邮箱地址",
+					agree: "请输入地址"
+				},
+				errorElement: "em",
+				errorPlacement: function ( error, element ) {
+					// Add the `help-block` class to the error element
+					error.addClass( "help-block" );
+
+					if ( element.prop( "type" ) === "checkbox" ) {
+						error.insertAfter( element.parent( "label" ) );
+					} else {
+						error.insertAfter( element );
+					}
+				},
+				highlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+				}
+			} );
+
+			$( "#signupForm1" ).validate( {
+				rules: {
+					firstname1: "required",
+					username1: {
+						required: true,
+						minlength: 2
+					},
+					password1: {
+						required: true,
+						minlength: 5
+					},
+					confirm_password1: {
+						required: true,
+						minlength: 5,
+						equalTo: "#password1"
+					},
+					email1: {
+						required: true,
+						email: true
+					},
+					agree1: "required"
+				},
+				messages: {
+					firstname1: "姓名不能为空",
+					username1: {
+						required: "用户名不能为空",
+						minlength: "用户名不能少于2位"
+					},
+					password1: {
+						required: "密码不能为空",
+						minlength: "密码不能少于5位"
+					},
+					confirm_password1: {
+						required: "密码不能为空",
+						minlength: "密码不能少于5位",
+						equalTo: "请保持两次输入密码相同"
+					},
+				    email1: "请输入正确的邮箱地址",
+					agree1: "请输入地址"
+				},
+				errorElement: "em",
+				errorPlacement: function ( error, element ) {
+					// Add the `help-block` class to the error element
+					error.addClass( "help-block" );
+
+					// Add `has-feedback` class to the parent div.form-group
+					// in order to add icons to inputs
+					element.parents( ".col-sm-5" ).addClass( "has-feedback" );
+
+					if ( element.prop( "type" ) === "checkbox" ) {
+						error.insertAfter( element.parent( "label" ) );
+					} else {
+						error.insertAfter( element );
+					}
+
+					// Add the span element, if doesn't exists, and apply the icon classes to it.
+					if ( !element.next( "span" )[ 0 ] ) {
+						$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
+					}
+				},
+				success: function ( label, element ) {
+					// Add the span element, if doesn't exists, and apply the icon classes to it.
+					if ( !$( element ).next( "span" )[ 0 ] ) {
+						$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+					}
+				},
+				highlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+					$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+				},
+				unhighlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+					$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+				}
+			} );
+		} );
+	</script>
+</body>
+</html>

@@ -135,11 +135,11 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript">
-		$.validator.setDefaults( {
-			submitHandler: function () {
-				alert( "提交表单" );
-			}
-		} );
+//		$.validator.setDefaults( {
+//			submitHandler: function () {
+//				alert( "提交表单" );
+//			}
+//		} );
 
 		$( document ).ready( function () {
 			$( "#signupForm" ).validate( {
@@ -198,7 +198,11 @@
 				},
 				unhighlight: function (element, errorClass, validClass) {
 					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-				}
+				},
+                submitHandler: function () {
+                    alert( "提交表单11" );
+                }
+                
 			} );
 
 			$( "#signupForm1" ).validate( {
@@ -274,7 +278,10 @@
 				unhighlight: function ( element, errorClass, validClass ) {
 					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
 					$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
-				}
+				},
+                submitHandler: function () {
+                    alert( "提交表单222" );
+                }
 			} );
 		} );
 	</script>

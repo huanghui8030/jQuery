@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在图片查看器的基础上加入图片旋转</title>
+</head>
+<body>
+    
+    <img src="images/img04.jpg" id='img' width='100'/>
+    <input type="button" id='btn' value='旋转'/>
+<script type="text/javascript" src='http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js'></script>
+<script src='jquery.rotate.js'></script> 
+<script>
+$(function(){
+  $('#btn').click(function(){
+      $('#img').css('rotate', 45);
+  });
+})
+</script>  
+</body>
+</html>

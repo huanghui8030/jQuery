@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片旋转</title>
+</head>
+<body>
+    
+    <img src="images/img04.jpg" id='img' width='100'/>
+    <input type="button" id='btn' value='旋转'/>
+<script type="text/javascript" src='http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js'></script>
+<script src='jquery.rotate.js'></script> 
+<script>
+$(function(){
+  $('#btn').click(function(){
+      var rotate = $('#img').css('rotate')||0;
+      var r = parseInt(rotate) +90;
+      $('#img').css('rotate',r);
+  });
+})
+</script>  
+</body>
+</html>

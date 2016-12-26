@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播2.0</title>
+    <link rel="stylesheet" href="css/2.0/idangerous.swiper.css">
+<style>
+.swiper-container {
+        width: 500px;
+        height: 160px;
+    }
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
+    opacity:0;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.for_photo{position:relative}
+.photo_select{
+        display:none;
+        position: absolute;
+        bottom: -10px;
+        right: 0;        
+        font-size:34px;
+        color:#25B887;
+    }    
+</style>
+</head>
+<body>
+     <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <input type="radio" name="my_photo" id="my_photo_1" value="1" style="position:absolute;left:-10000px;">
+                <label for="my_photo_1" class="for_photo">
+                    <i class="iconfont photo_select">&#xe67e;</i>
+                    <img src="images/img01.jpg" width="120" height="160"  style="cursor:pointer" />
+                </label>
+            </div>
+            <div class="swiper-slide">
+                <input type="radio" name="my_photo" id="my_photo_2" value="2" style="position:absolute;left:-10000px;">
+                <label for="my_photo_2" class="for_photo">
+                    <i class="iconfont photo_select">&#xe67e;</i>
+                    <img src="images/img02.jpeg" width="120" height="160"  style="cursor:pointer" />
+                </label>
+            </div> 
+            <div class="swiper-slide">
+                <input type="radio" name="my_photo" id="my_photo_3" value="3" style="position:absolute;left:-10000px;">
+                <label for="my_photo_3" class="for_photo">
+                    <i class="iconfont photo_select">&#xe67e;</i>
+                    <img src="images/img03.jpg".jpg width="120" height="160"  style="cursor:pointer" />
+                </label>
+            </div> 
+            <div class="swiper-slide">
+                <input type="radio" name="my_photo" id="my_photo_4" value="4" style="position:absolute;left:-10000px;">
+                <label for="my_photo_4" class="for_photo">
+                    <i class="iconfont photo_select">&#xe67e;</i>
+                    <img src="images/img04.jpg".jpg width="120" height="160"  style="cursor:pointer" />
+                </label>
+            </div>   
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+<script src='https://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js'></script>
+<script src="js/2.0/idangerous.swiper.min.js"></script> 
+<script>
+  setTimeout(function(){
+        new Swiper('.swiper-container', {
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 40
+        });
+    },200);  
+</script>    
+</body>
+</html>

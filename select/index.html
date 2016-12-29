@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自制小清新插件</title>
+ <link href="css/select.css" rel="stylesheet" />
+    <link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+</head>
+
+<body>
+<select id="mySelect">
+            <option value="1">成功1</option>
+            <option value="2">成功2</option>
+            <option value="3" selected="selected">成功3</option>
+            <option value="4">成功4</option>
+            <option value="5">失败5</option>
+            <option value="6">失败6</option>
+            <option value="7">失败7</option>
+            <option value="8">失败8</option>
+            <option value="9">失败9</option>
+            <option value="10">失败10</option>
+            <option value="11">失败11</option>
+            <option value="12">失败12</option>
+        </select>
+        <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/jquery.select.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $("#mySelect").select(); 不传参数可以这样写
+//            $("#mySelect").select({
+//                width: "200px"
+//            });
+            //可选参数,不填就是默认值
+            //width: "180px",            //生成的select框宽度
+            //listMaxHeight:"200px",     //生成的下拉列表最大高度
+            //themeColor: "#00bb9c",    //主题颜色
+            //fontColor: "#000",        //字体颜色
+            //fontFamily: "'Helvetica Neue', arial, sans-serif",    //字体种类
+            //fontSize:"15px",           //字体大小
+            //showSearch: false,        //是否启用搜索框
+            //rowColor:"#fff",          //行原本的颜色
+            //rowHoverColor: "#0faf03", //移动选择时，每一行的hover底色
+            //fontHoverColor: "#fff",   //移动选择时，每一行的字体hover颜色
+            //mainContent: "请选择",    //选择显示框的默认文字
+            //searchContent: "关键词搜索"   //搜索框的默认提示文字  
+        });
+    </script>
+</body>
+</html>

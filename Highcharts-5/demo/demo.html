@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>测试</title>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+$(function () {
+    Highcharts.chart('container', {
+        title: {
+            text: '对比',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '来源：2015和2016',
+            x: -20
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'REM'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: 'REM'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: '2015',
+            data: [17733.83,79711.88, 24666.44, 29935.12, 26792.39, 26029.39, 21377.65, 18360.93, 21490.09, 32160.11, 25227.92, 20911.45]
+        }, {
+            name: '2016',
+            data: [29261.30, 106321.37, 22148.65, 24843.45, 29014.65, 25012.48, 27110.34, 27695.05, 26561.45, 37788.29, 37348.33, 32292.65]
+        }]
+    });
+});
+		</script>
+	</head>
+	<body>
+<script src="js/highcharts.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

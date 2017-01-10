@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>automail</title>
+    <link rel="stylesheet" href="automail.css">
+    <script src="https://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="automail.js"></script>
+</head>
+<body>
+<input id="email" class="demo" type="text" name="email" />
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#email').autoMail({
+        emails:['qq.com','163.com','126.com','sina.com','sohu.com','yahoo.cn','gmail.com','hotmail.com','live.cn']
+    });
+});
+</script>
+</body>
+</html>

@@ -9,21 +9,14 @@
 </head>
 
 <body>
-    <div id="addCommodityIndex">
-        <!--input-group start-->
-        <div class="input-group row">
-            <div class="col-sm-3">
-                <label>商品图片</label>
-            </div>
-            <div class="col-sm-9 big-photo">
-                <div id="preview">
-                    <img id="imghead" border="0" src="img/photo_icon.png" width="90" height="90" onclick="$('#previewImg').click();">
-                </div>
-                <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
-                <!--<input id="uploaderInput" class="uploader__input" style="display: none;" type="file" accept="" multiple="">-->
-            </div>
+    <!-- 只兼容到ie8及其以上浏览器！-->    
+    <div>商品图片</div>
+    <div>
+        <div id="preview">
+            <img id="imghead" border="0" src="img/photo_icon.png" width="90" height="90" onclick="$('#previewImg').click();">
         </div>
-        <!--input-group end-->
+        <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
+        <!--<input id="uploaderInput" class="uploader__input" style="display: none;" type="file" accept="" multiple="">-->
     </div>
 </body>
 

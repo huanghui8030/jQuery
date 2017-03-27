@@ -1,0 +1,19 @@
+<!DOCTYPE>
+<html>
+ <head>
+  <title> 通过js保存图片到本地 </title>
+<script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script> 
+</head>
+
+ <body>
+     <div class="item" id="saveImg" style="width: 100%;">保存图片</div>  
+  <script>
+     $("#saveImg").click(function(){  
+         html2canvas($(".tongxingzheng_bg")).then(function(canvas) {  
+             var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url  
+             window.location.href= imgUri; // 下载图片  
+         });  
+     }); 
+        </script>
+ </body>
+</html>

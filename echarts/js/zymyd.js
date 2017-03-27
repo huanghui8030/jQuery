@@ -32,50 +32,50 @@ function getChart(strArr){
         strChart.setOption(option);
     }
 };
-//设置参数
-function setOptionFn(date){
-    var text = date.text;
-    var subtext = date.subtext;
-    var _ption = {
-        title : {
-            text: text,
-            subtext: subtext,
-            x:'center'
-        },
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['⭐️','⭐️⭐️','⭐️⭐⭐️','⭐️⭐⭐️⭐','⭐️⭐⭐️⭐⭐️']
-        },
-        series : [
-            {
-                name: text,
-                type: 'pie',
-                radius : '55%',
-                center: ['50%', '60%'],
-                data:[
-                    {value:12, name:'⭐️'},
-                    {value:2, name:'⭐️⭐'},
-                    {value:15, name:'⭐️⭐⭐️'},
-                    {value:23, name:'⭐️⭐⭐️⭐'},
-                    {value:55, name:'⭐️⭐⭐️⭐⭐️'}
-                ],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //设置参数
+    function setOptionFn(date){
+        var text = date.text;
+        var subtext = date.subtext;
+        var _ption = {
+            title : {
+                text: text,
+                subtext: subtext,
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['⭐️','⭐️⭐️','⭐️⭐⭐️','⭐️⭐⭐️⭐','⭐️⭐⭐️⭐⭐️']
+            },
+            series : [
+                {
+                    name: text,
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:12, name:'⭐️'},
+                        {value:2, name:'⭐️⭐'},
+                        {value:15, name:'⭐️⭐⭐️'},
+                        {value:23, name:'⭐️⭐⭐️⭐'},
+                        {value:55, name:'⭐️⭐⭐️⭐⭐️'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
                     }
                 }
-            }
-        ]
-    };
-    return _ption;
-}
+            ]
+        };
+        return _ption;
+    }
 //专业满意度
 var zyldtChart = echarts.init(document.getElementById('zyldt'));
 var zyldtOption  = {

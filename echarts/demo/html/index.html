@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印</title>
+</head>
+<body>
+       
+    <div id='box'>   
+        <iframe src='a.html' id='childframe' style="border:0;height:400px;width:800px">
+        </iframe>
+     </div>
+<script src="http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script> 
+<script src='../js/html2canvas.js'></script>
+<script>
+
+
+$(function(){
+    setTimeout(function(){
+        getImages();
+    },2000);             
+});
+//html2canvas截屏
+function getImages(){
+    html2canvas(document.getElementById("childframe").contentWindow.document.body, {  
+        allowTaint: true,  
+        taintTest: false,  
+        onrendered: function(canvas) {  
+            canvas.id = "mycanvas";  
+            //document.body.appendChild(canvas);  
+            //生成base64图片数据  
+            var dataUrl = canvas.toDataURL();  
+            var newImg = document.createElement("img");  
+            newImg.src =  dataUrl;  
+            var box = document.getElementById('box');
+            $('#childframe').remove();
+            box.appendChild(newImg); 
+            // 加工image data，替换mime type
+            var type = 'png';
+            dataUrl = dataUrl.replace(_fixType(type),'image/octet-stream');
+       
+            // download
+            // 下载后的问题名
+            var filename = 'img-' + (new Date()).getTime() + '.' + type;
+            box.appendChild(newImg); 
+            saveFile(dataUrl,filename);
+            //newImg.execCommand("SaveAs");
+        }  
+    });  
+}
+//// 图片导出为 png 格式
+/**
+ * 获取mimeType
+ * @param  {String} type the old mime-type
+ * @return the new mime-type
+ */
+var _fixType = function(type) {
+    type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+    var r = type.match(/png|jpeg|bmp|gif/)[0];
+    return 'image/' + r;
+};
+   
+
+/**
+ * 在本地进行文件保存
+ * @param  {String} data     要保存到本地的图片数据
+ * @param  {String} filename 文件名
+ */
+var saveFile = function(data, filename){
+    var save_link = document.createElement('a');
+    save_link.href = data;
+    save_link.download = filename;
+   
+    var event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    save_link.dispatchEvent(event);
+    
+};
+//   
+
+</script>
+</body>
+</html>

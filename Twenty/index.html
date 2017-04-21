@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="utf-8" />
+<link href="css/foundation.css" rel="stylesheet" type="text/css" />
+<link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="row" style="margin-top: 2em;">
+  <div class="large-4 columns">
+    <h3>标题</h3>
+    <p>Demonstrates basic usage of the plugin.</p>
+  </div>
+  <div class="large-8 columns">
+    <div class="twentytwenty-container">
+      <img src="images/1_1.jpg" />
+      <img src="images/1_2.jpg" />
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 2em; margin-bottom: 2em;">
+  <div class="large-4 columns">
+    <h3>´¹Ö±·½Ïò</h3>
+    <p>Demonstrates sliding up and down.</p>
+  </div>
+  <div class="large-8 columns">
+    <div class="twentytwenty-container" data-orientation="vertical">
+      <img src="images/1_1.jpg" />
+      <img src="images/1_2.jpg" />
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 2em;">
+  <div class="large-4 columns">
+    <h3>¶à¸öµ÷ÓÃ</h3>
+    <p>Using multiple comparisons at once.</p>
+  </div>
+  <div class="large-4 columns">
+    <div class="twentytwenty-container">
+      <img src="images/2_1.jpg" />
+      <img src="images/2_2.jpg" />
+    </div>
+  </div>
+  <div class="large-4 columns">
+    <div class="twentytwenty-container">
+      <img src="images/3_1.jpg" />
+      <img src="images/3_2.jpg" />
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.event.move.js"></script>
+<script src="js/jquery.twentytwenty.js"></script>
+<script>
+$(window).load(function(){
+  $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.7});
+  $(".twentytwenty-container[data-orientation='vertical']").twentytwenty({default_offset_pct: 0.3, orientation: 'vertical'});
+});
+</script>
+</div>
+</body>
+</html>

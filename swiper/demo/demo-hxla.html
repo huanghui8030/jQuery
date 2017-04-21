@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>海峡两岸实例</title>
+    <link rel="stylesheet" href="http://t1.chei.com.cn/common/plugins/swiper/swiper.min.css">
+<style>
+.left {position: relative;height: 100%;}
+.left{background: #000;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;font-size: 14px;color:#000;margin: 0;padding: 0;}
+.swiper-container {width: 100%;height: 300px;margin-left: auto;margin-right: auto;}
+.swiper-slide {background-size: cover;background-position: center;}
+.gallery-top {height: 80%;width: 100%;}
+.gallery-thumbs {height: 20%;box-sizing: border-box;padding: 10px 0;}
+.gallery-thumbs .swiper-slide {width: 25%;height: 100%;opacity: 0.4;}
+.gallery-thumbs .swiper-slide-active {opacity: 1;}
+    .left{float: left;width:60%}
+    .right{float:right;width: 40%}
+</style>
+</head>
+<body>
+<div class='demo'>
+    <div class="left">
+        <!-- Swiper -->
+        <div class="swiper-container gallery-top">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide" style="background-image:url(images/img01.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img02.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img03.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img04.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img05.jpg)"></div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+        <div class="swiper-container gallery-thumbs">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(images/img01.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img02.jpeg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img03.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img04.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(images/img05.jpg)"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        内容
+    </div>
+</div>
+<script src="http://t1.chei.com.cn/common/jquery/1.11.1/jquery.min.js "></script>
+<script src="http://t1.chei.com.cn/common/plugins/swiper/swiper-3.4.2.jquery.min.js"></script>
+<script>
+$(function(){
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+        loop:true
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true,
+        loop:true
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+})
+</script>   
+</body>
+</html>

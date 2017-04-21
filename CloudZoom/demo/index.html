@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jquery图片放大插件CloudZoomV3.1</title>
+    <link rel="stylesheet" href="../css/cloudzoom.css">
+</head>
+<body>
+    <img class="cloudzoom" src="../images/small/img02.jpg" data-cloudzoom="zoomImage: '../images/img02.jpeg'">
+    <br>
+    <img class="cloudzoom-gallery" src="../images/img01.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: '../images/img01.jpg', zoomImage: '../images/img01.jpg' ">
+    <img class="cloudzoom-gallery cloudzoom-gallery-active" src="../images/img02.jpeg" data-cloudzoom="useZoom: '.cloudzoom', image: '../images/img02.jpeg', zoomImage: '../images/img02.jpeg' ">
+    <img class="cloudzoom-gallery" src="../images/img03.jpg" data-cloudzoom="useZoom: '.cloudzoom', image: '../images/img03.jpg', zoomImage: '../images/img03.jpg' ">
+<script src="http://t1.chei.com.cn/common/jquery/1.8.3/jquery.min.js"></script>    
+<script src="../js/cloudzoom.js"></script>
+<script>
+CloudZoom.quickStart();
+</script>
+</body>
+</html>

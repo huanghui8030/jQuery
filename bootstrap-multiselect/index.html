@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>select下拉多选效果</title>
+    <link rel="stylesheet" href="http://t1.chei.com.cn/common/bootstrap3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+<style>
+    .multiselect-native-select .multiselect{width: 160px;text-align: left;}
+.multiselect-native-select .input-group-addon{padding: 5px 6px;}
+.multiselect-native-select .multiselect-search{height: 29px;}
+.multiselect-native-select .multiselect-clear-filter{ padding: 5px 6px;}
+        .multiselect-native-select .caret{
+            border:0;
+                position: absolute;
+    right: 20px;
+    top: 10px; 
+            display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    }
+    .multiselect-native-select .caret:before{content: "\e259";}
+</style>
+</head>
+<body>
+    <select id="example-getting-started" multiple="multiple" style="width:160px">
+        <option value="cheese">1</option>
+        <option value="tomatoes">2</option>
+        <option value="mozarella">3</option>
+        <option value="mushrooms">4</option>
+        <option value="pepperoni">5</option>
+        <option value="onions">6</option>
+    </select>
+    <script src="http://t1.chei.com.cn/common/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://t1.chei.com.cn/common/bootstrap3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-multiselect.js"></script> 
+    <script>
+//http://davidstutz.github.io/bootstrap-multiselect/#configuration-options-buttonText
+/**
+ * 多选插件  
+ https://github.com/davidstutz/bootstrap-multiselect
+ * huangh@chsi.com.cn 20170526
+ **/        
+    $(document).ready(function() {
+        $('#example-getting-started').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            numberDisplayed: 2,
+            nSelectedText: '项已选中',
+            nonSelectedText: '请选择',
+            allSelectedText: '全部选中',
+            selectAllText: '全选',
+             filterPlaceholder: '搜索'
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>masonry瀑布流插件</title>
+<style>
+.container-fluid {
+    padding: 20px;
+    width:100%
+}
+.box {
+    margin-bottom: 20px;
+    float: left;
+    width: 200px;
+    margin-right: 20px
+}
+.box img {
+    width: 100%
+}
+</style>
+</head>
+<body>
+    <div id="masonry" class="container-fluid">
+      <div class="box"><img src="images/img01.jpg"></div>
+      <div class="box"><img src="images/img02.jpeg"></div>
+      <div class="box"><img src="images/img03.jpg"></div>
+      <div class="box"><img src="images/img04.jpg"></div>
+      <div class="box"><img src="images/img05.jpeg"></div>
+      <div class="box"><img src="images/img06.jpg"></div>
+    </div>
+<script src='http://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js'></script>
+<script src="/masonry/masonry.pkgd.min.js"></script>
+<script>
+$(function() {    
+    $('#masonry').masonry({
+       itemSelector: '.box',
+       columnWidth: 200
+    });
+});  
+</script>
+</body>
+</html>

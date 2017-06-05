@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html data-livestyle-extension="available">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>图文对比-标尺</title>
+		<link rel="stylesheet" type="text/css" href="./js/index.css">
+		<script src="./js/jquery-2.1.0.js"></script>
+		<script src="./js/data.js"></script>
+		<script src="./js/handleImage.js"></script>
+		<script src="./js/index.js"></script>
+<style>
+.contrastOuter{
+   position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    box-sizing: border-box;
+}
+.contrastBlock{
+    width:50%;
+    height: 40px;
+    border:1px solid #ccc;
+    position: absolute;
+    top:100px;
+    left:0;
+    background: #fff;
+    cursor: move; 
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 5px 1px #fff; 
+            box-shadow: 0px 0px 5px 1px #fff; 
+}
+.contrastLeft{
+    width: calc(100% - 610px);
+}
+.contrastRight{
+    width: 600px;
+    left: calc(100% - 600px)
+}
+.contrastClose{
+    position: absolute;
+    top: 4px;
+    right: 2px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    -webkit-user-select:none;
+       -moz-user-select:none;
+            user-select:none; 
+}
+
+</style>
+	</head>
+	<body>
+		<div class="container1" style="width: 1440px; height: 683px;">
+			<div class="main1">
+				<!-- 图片显示 -->
+				<div class="showImg1" style="height: 538px;">
+					<a href="javascript:;" class="showImg1_btnLeft"></a>
+					<a href="javascript:;" class="showImg1_btnRight"></a>
+					<div class="imgBox1">
+						<img src="" class="img1" style="width: 400px; height: 266px; left: 293px; top: 156px;">
+					</div>
+				</div>
+				<!-- 图片选择 -->
+				<div class="chooseImg1_box">
+					<div class="navList1">
+						<!--<span class="btnImgList">图片列表<i></i></span>-->
+						<lable class="pTroName1" style='margin-right: 20px;'></lable>
+						<span class="btnImgScale">
+							<a href="javascript:;" class="scaleAdd1">+</a>
+							<b class="scale1">100%</b>
+							<a href="javascript:;" class="scaleReduce1">-</a>
+						</span>
+						<span class="btnImgInit1">原始尺寸</span>
+						<span class="btnImgFullScreen">全屏</span>
+						<span class="btnContrast">标尺</span>
+					</div>
+					<div class="boxLimit1">
+						<a href="javascript:;" class="chooseImg1_btnLeft"></a>
+						<div class="imgListBox1">
+							<ul class="imgList1" style="width: 1610px; left: 0px;">
+								<!--<li></li>
+								<li class="active"></li>-->
+							</ul>
+						</div>
+						<a href="javascript:;" class="chooseImg1_btnRight"></a>
+					</div>
+					
+				</div>
+			</div>
+			<div class="sider1">
+				<p class="pTroTit1">images/a2.jpg</p>
+				<p class="pTroName1">a2.jpg</p>
+			</div>
+		</div>
+		<!-- 全屏 -->
+		<div class="container2" style="width: 1440px; height: 683px;">
+			<div class="chooseTimeBox">
+				<select class="select">
+					<option value="2">2s</option>
+					<option value="3">3s</option>
+					<option value="5">5s</option>
+				</select>
+				<a href="javascript:;" class="btnStart">开始</a>
+				<a href="javascript:;" class="btnStop">||</a>
+			</div>
+			<!-- main -->
+			<div class="imgBox2">
+				<img src="https://nbin2008.github.io/demo/imgskim/index.html" class="img2">
+			</div>
+			<a href="javascript:;" class="showImg2_btnLeft"></a>
+			<a href="javascript:;" class="showImg2_btnRight"></a>
+			<div class="imgListBox2">
+				<ul class="imgList2" style="width: 2300px;">
+				    
+				</ul>
+			</div>
+			<a href="javascript:;" class="chooseImg2_btnLeft aBtn"></a>
+			<a href="javascript:;" class="chooseImg2_btnRight aBtn"></a>
+			<a href="javascript:;" class="btnExitFullScreen">x</a>
+		</div>
+<script>
+$(function(){ 
+    showContrast();
+    moveContrast()
+    //键盘事件
+    $(document).keydown(function(e){ 
+        if(e.keyCode == 38){
+            setContrastMove(0);
+        }else if(e.keyCode == 40){
+            setContrastMove(1);
+        }
+    });  
+})
+/**
+ * 显示标尺
+ * @author huangh@chsi.com.cn 20170602
+ */
+function showContrast(){
+    $('.btnContrast').on('click',function(){
+        var $contrast = $('.contrastOuter') || '' ,
+            $contariner = $('.container1');
+        if($contrast.length==0){
+            $contariner.append('<div class="contrastOuter"><div class="contrastLeft contrastBlock"><span class="contrastClose">X</span></div><div class="contrastRight contrastBlock"><span class="contrastClose">X</span></div></div>');
+        }else{
+            $contrast.show();
+            $('.contrastBlock').css('top','100px');
+        }   
+    });
+}
+/**
+ * 移动左右标尺
+ * @author huangh@chsi.com.cn 20170602
+ */
+function moveContrast(){
+    var y1 = 0 ,  //移动前位置
+        y2 = 0 ,  //移动后位置
+        MoveFlag = false; //是否移动
+    $('.container1').delegate('.contrastBlock','mousedown',function(e){
+        MoveFlag = true;
+        var $this = $(this),
+            top = parseFloat($this.css('top')).toFixed(0.2);
+        y1 = e.pageY;
+       
+    }).delegate('div','mouseup',function(e){
+        MoveFlag = false;
+    }).delegate('.contrastBlock','mousemove',function(e){
+        if(MoveFlag){
+            var $this = $(this),
+                top = parseInt($this.css('top')),
+                height = $('.contrastOuter').height() - $this.height() -5;
+            y2 = e.pageY;
+            top +=  y2-y1;
+            top = top<5?5:top;
+            top = top>height?height:top;
+            $this.css('top',top+"px");
+             y1 = y2;
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty(); 
+        }
+    }).delegate('.contrastClose','click',function(){
+        MoveFlag = false;
+        $('.contrastOuter').hide();
+    });
+}
+/**
+ * 设置标尺一起移动
+ * @param {Number} dir 标尺移动方向，0为上，1位下。
+ * @author huangh@chsi.com.cn 20170602
+ */
+function setContrastMove(dir){
+    var $left = $('.contrastLeft'),
+        $right = $('.contrastRight'),
+        left = parseInt($left.css('top')),
+        right = parseInt($right.css('top')),
+        DISTANCE = 2 ,
+        height = $('.contrastOuter').height() - $('.contrastBlock').height() -5;
+    if(dir === 0){
+        left -= DISTANCE ;  
+        right -= DISTANCE ;  
+    }else if(dir === 1){
+        left += DISTANCE ;  
+        right += DISTANCE ;  
+    }
+    left = left<5?5:left;
+    right = right<5?5:right;
+    left = left>height?height:left;
+    right = right>height?height:right;
+    $left.css('top',left);
+    $right.css('top',right);
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

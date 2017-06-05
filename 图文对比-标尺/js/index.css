@@ -4,7 +4,7 @@
 	margin: 0; padding: 0;
 }
 body,html{
-	font-family: "微软雅黑"; font-size: 12px; overflow: hidden;
+	font-family: "微软雅黑"; font-size: 14px; overflow: hidden;
 }
 li{
 	list-style: none;
@@ -27,16 +27,16 @@ i{
 	width: 100%; height: 100%; background-color: #f6f6f6; position: absolute; min-width: 1000px; min-height: 400px; -display: none;
 }
 .main1{
-	position: absolute; width: calc(100% - 710px); height: calc(100% - 5px); left: 0; top: 5px; background-color: #fff;
+	position: absolute; width: calc(100% - 710px); height: calc(100% - 5px); left: 0; top: 5px; background-color: #a3c3cb;
 }
 .sider1{
-	position: absolute; width: 700px; margin-left: 10px; height: calc(100% - 5px); overflow-x: hidden; overflow-y: auto; top: 5px; right: 0px; background-color: #fff;
+	position: absolute; width: 700px; margin-left: 10px; height: calc(100% - 5px); overflow-x: hidden; overflow-y: auto; top: 5px; right: 0px; background-color: #a3c3cb;
 }
 .showImg1{
 	width: 100%; position: relative;
 }
 .showImg1 a{
-	position: absolute; width: 70px; height: 100%; top: 0; background-color: #fff; transition: all 0.5s;
+	position: absolute; width: 70px; height: 100%; top: 0; background-color: #a3c3cb; transition: all 0.5s;
 }
 .showImg1 a:hover{
 	background-color: #e6e6e6;
@@ -66,7 +66,7 @@ i{
 	position: absolute; width: calc(100% - 144px); height: calc(100% - 4px); left: 72px; top: 2px; overflow: hidden;
 }
 .showImg1 .imgBox1 .img1{
-	position: absolute; display: block;
+	position: absolute; display: block;cursor: pointer;
 }
 .chooseImg1_box{
 	position: relative; overflow: hidden;

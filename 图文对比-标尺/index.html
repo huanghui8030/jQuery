@@ -11,11 +11,13 @@
 <style>
 .contrastOuter{
    position: relative;
+/*
     width: 100%;
     height: 100%;
     background: #000;
     opacity: 0.3;
     box-sizing: border-box;
+*/
 }
 .contrastBlock{
     width:50%;
@@ -24,7 +26,8 @@
     position: absolute;
     top:100px;
     left:0;
-    background: #fff;
+    background: #c72365;
+    opacity: 0.35;
     cursor: move; 
     box-sizing: border-box;
     -webkit-box-shadow: 0px 0px 5px 1px #fff; 
@@ -46,21 +49,20 @@
     display: block;
     font-size: 24px;
     font-weight: bold;
+    color: #fff;
     cursor: pointer;
     text-align: center;
     -webkit-user-select:none;
        -moz-user-select:none;
             user-select:none; 
 }
-    .rcdb-table{
-        
-    }
-    .input-short{
-        width:40px;
-    }
-    .input-long{
-        width:90px;
-    }
+    .bc-input{width:50px;}
+.rcdb-table{font-size: 14px;margin:10px 4px;}
+.rcdb-table tr{height: 40px;line-height: 40px;}
+.input-short{width:40px;}
+.input-long{width:110px;}
+.btn{border: 1px solid #ccc;background: #d9ece9;padding: 2px 6px;cursor: pointer;margin-left: 6px;}
+    .input-short,.input-long{height: 30px;line-height: 30px;padding:0 2px;}
 </style>
 	</head>
 	<body>
@@ -86,7 +88,10 @@
 						</span>
 						<span class="btnImgInit1">原始尺寸</span>
 						<span class="btnImgFullScreen">全屏</span>
-						<span class="btnContrast">标尺</span>
+                        <span class="btnContrast">标尺</span>
+                        
+                        <input type="text" class='bc-input' value='40'> <span class='contrast-left'>left</span>
+				        <input type="text" class='bc-input' value='40'> <span class='contrast-right'>right</span>
 					</div>
 					<div class="boxLimit1">
 						<a href="javascript:;" class="chooseImg1_btnLeft"></a>
@@ -108,7 +113,7 @@
 				    <table>
 				        <tr>
                             <td>1.</td>
-                            <td>课程：<input type="text" value='体育基础课' classk='input-long'></td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
                             <td>分数：<input type="text" value='84' class='input-short'></td>
                             <td>学分：<input type="text" value='1' class='input-short'></td>
                             <td>学时：<input type="text" value='' class='input-short'></td>
@@ -116,7 +121,106 @@
                                 <option value="1">必修</option>
                                 <option value="2">选修</option>
                             </select></td>
-                            <td><input type="button" value='删除'></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>2.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>3.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>4.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>5.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>6.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>7.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>8.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>9.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
+				        </tr><tr>
+                            <td>10.</td>
+                            <td>课程：<input type="text" value='体育基础课' class='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除' class='btn'></td>
 				        </tr>
 				    </table>
 				</div>
@@ -166,7 +270,7 @@ $(function(){
  * @author huangh@chsi.com.cn 20170602
  */
 function showContrast(){
-    $('.btnContrast').on('click',function(){
+    $('.navList1').delegate('.btnContrast','click',function(){
         var $contrast = $('.contrastOuter') || '' ,
             $contariner = $('.container1');
         if($contrast.length==0){
@@ -175,7 +279,16 @@ function showContrast(){
             $contrast.show();
             $('.contrastBlock').css('top','100px');
         }   
+    }).delegate('.contrast-left','click',function(){
+        var $this = $(this),
+            height = $this.prev().val() || '40';
+        $('.contrastLeft').css('height',height);
+    }).delegate('.contrast-right','click',function(){
+        var $this = $(this),
+            height = $this.prev().val() || '40';
+        $('.contrastRight').css('height',height);
     });
+    
 }
 /**
  * 移动左右标尺
@@ -197,7 +310,7 @@ function moveContrast(){
         if(MoveFlag){
             var $this = $(this),
                 top = parseInt($this.css('top')),
-                height = $('.contrastOuter').height() - $this.height() -5;
+                height = $(window).height() - $this.height() -5;
             y2 = e.pageY;
             top +=  y2-y1;
             top = top<5?5:top;
@@ -222,7 +335,9 @@ function setContrastMove(dir){
         left = parseInt($left.css('top')),
         right = parseInt($right.css('top')),
         DISTANCE = 20 ,
-        height = $('.contrastOuter').height() - $('.contrastBlock').height() -5;
+        cLeftHeight = $('.contrastLeft').height(),
+        cRightHeight = $('.contrastRight').height(),
+        height = $(window).height() - (cLeftHeight>cRightHeight?cRightHeight:cLeftHeight) -5;
     if(dir === 0){
         left -= DISTANCE ;  
         right -= DISTANCE ;  

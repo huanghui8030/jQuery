@@ -31,11 +31,11 @@
             box-shadow: 0px 0px 5px 1px #fff; 
 }
 .contrastLeft{
-    width: calc(100% - 610px);
+    width: calc(100% - 710px);
 }
 .contrastRight{
-    width: 600px;
-    left: calc(100% - 600px)
+    width: 700px;
+    left: calc(100% - 700px)
 }
 .contrastClose{
     position: absolute;
@@ -52,7 +52,15 @@
        -moz-user-select:none;
             user-select:none; 
 }
-
+    .rcdb-table{
+        
+    }
+    .input-short{
+        width:40px;
+    }
+    .input-long{
+        width:90px;
+    }
 </style>
 	</head>
 	<body>
@@ -96,6 +104,22 @@
 			<div class="sider1">
 				<p class="pTroTit1">images/a2.jpg</p>
 				<p class="pTroName1">a2.jpg</p>
+				<div class='rcdb-table'>
+				    <table>
+				        <tr>
+                            <td>1.</td>
+                            <td>课程：<input type="text" value='体育基础课' classk='input-long'></td>
+                            <td>分数：<input type="text" value='84' class='input-short'></td>
+                            <td>学分：<input type="text" value='1' class='input-short'></td>
+                            <td>学时：<input type="text" value='' class='input-short'></td>
+                            <td>课程类别：<select name="kclb" id="">
+                                <option value="1">必修</option>
+                                <option value="2">选修</option>
+                            </select></td>
+                            <td><input type="button" value='删除'></td>
+				        </tr>
+				    </table>
+				</div>
 			</div>
 		</div>
 		<!-- 全屏 -->
@@ -197,7 +221,7 @@ function setContrastMove(dir){
         $right = $('.contrastRight'),
         left = parseInt($left.css('top')),
         right = parseInt($right.css('top')),
-        DISTANCE = 2 ,
+        DISTANCE = 20 ,
         height = $('.contrastOuter').height() - $('.contrastBlock').height() -5;
     if(dir === 0){
         left -= DISTANCE ;  

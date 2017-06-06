@@ -40,7 +40,7 @@
     width: 700px;
     left: calc(100% - 700px)
 }
-.contrastClose{
+/*.contrastClose{
     position: absolute;
     top: 4px;
     right: 2px;
@@ -55,7 +55,7 @@
     -webkit-user-select:none;
        -moz-user-select:none;
             user-select:none; 
-}
+}*/
 .bc-input{width:40px;}
 .rcdb-table{font-size: 14px;margin:10px 4px;}
 .rcdb-table tr{height: 40px;line-height: 40px;}
@@ -89,8 +89,20 @@
 						<span class="btnImgInit1">原始尺寸</span>
                         <span class="btnContrast">标尺</span>
                         
-                        <input type="text" class='bc-input' value='40'> <span class='contrast-left'>left</span>
-				        <input type="text" class='bc-input' value='40'> <span class='contrast-right'>right</span>
+                        <span class="btnImgScale contrastHeight left">
+							<a href="javascript:;" class="add">+</a>
+							<b class="scale">100%</b>
+							<a href="javascript:;" class="reduce">-</a>
+						</span>
+				        <span class='contrast-left'>还原left</span>
+				       
+				        <span class="btnImgScale contrastHeight right">
+							<a href="javascript:;" class="add">+</a>
+							<b class="scale">100%</b>
+							<a href="javascript:;" class="reduce">-</a>
+						</span>
+				        <span class='contrast-right'>还原right</span>
+				        
 					</div>
 					<div class="boxLimit1">
 						<a href="javascript:;" class="chooseImg1_btnLeft"></a>
@@ -225,39 +237,13 @@
 				</div>
 			</div>
 		</div>
-		<!-- 全屏 -->
-		<div class="container2" style="width: 1440px; height: 683px;">
-			<div class="chooseTimeBox">
-				<select class="select">
-					<option value="2">2s</option>
-					<option value="3">3s</option>
-					<option value="5">5s</option>
-				</select>
-				<a href="javascript:;" class="btnStart">开始</a>
-				<a href="javascript:;" class="btnStop">||</a>
-			</div>
-			<!-- main -->
-			<div class="imgBox2">
-				<img src="https://nbin2008.github.io/demo/imgskim/index.html" class="img2">
-			</div>
-			<a href="javascript:;" class="showImg2_btnLeft"></a>
-			<a href="javascript:;" class="showImg2_btnRight"></a>
-			<div class="imgListBox2">
-				<ul class="imgList2" style="width: 2300px;">
-				    
-				</ul>
-			</div>
-			<a href="javascript:;" class="chooseImg2_btnLeft aBtn"></a>
-			<a href="javascript:;" class="chooseImg2_btnRight aBtn"></a>
-			<a href="javascript:;" class="btnExitFullScreen">x</a>
-		</div>
 <script>
+var INITHEIGHT = 40;
 $(function(){ 
     showContrast();
     moveContrast()
-    //键盘事件
-    $(document).keydown(function(e){ 
-        console.log(e.keyCode);
+    
+    $(document).keydown(function(e){  //键盘事件
         if(e.keyCode == 38 && e.shiftKey){ //shift+up
             setContrastMove(0);
         }else if(e.keyCode == 40 && e.shiftKey ){ //shift+down
@@ -278,22 +264,75 @@ function showContrast(){
         var $contrast = $('.contrastOuter') || '' ,
             $contariner = $('.container1');
         if($contrast.length==0){
-            $contariner.append('<div class="contrastOuter"><div class="contrastLeft contrastBlock"><span class="contrastClose">X</span></div><div class="contrastRight contrastBlock"><span class="contrastClose">X</span></div></div>');
+            $contariner.append('<div class="contrastOuter"><div class="contrastLeft contrastBlock"></div><div class="contrastRight contrastBlock"></div></div>');
         }else{
-            $contrast.show();
-            $('.contrastBlock').css('top','100px');
+            return false;
+            /*$contrast.show();
+            $('.contrastBlock').css('top','100px');*/
         }   
+    }).delegate('.contrastHeight','click',function(e){
+        if($('.contrastOuter').length==0){
+            return false;
+        }
+        var $target = $(e.target) ,
+            $this = $(this) ,
+            addIndex = 0 ,
+            leftIndex = 0 ,
+            text = '' ; 
+        if($this.is('.left')){
+            leftIndex = 0 ;
+        }else if($this.is('.right')){
+            leftIndex = 1 ;
+        }  
+        if($target.is('.add')){
+            addIndex = 0 ;
+            text = $this.find('.scale').text() ;
+            setContrastHeight(addIndex,leftIndex,text) ; 
+        }else if($target.is('.reduce')){
+            addIndex = 1 ; 
+            text = $this.find('.scale').text() ;
+            setContrastHeight(addIndex,leftIndex,text) ; 
+        }
     }).delegate('.contrast-left','click',function(){
-        var $this = $(this),
-            height = $this.prev().val() || '40';
-        $('.contrastLeft').css('height',height);
+        if($('.contrastOuter').length==0){
+            return false;
+        }
+        $('.contrastLeft').css('height',INITHEIGHT);
+        $('.left').find('.scale').text('100%');
     }).delegate('.contrast-right','click',function(){
-        var $this = $(this),
-            height = $this.prev().val() || '40';
-        $('.contrastRight').css('height',height);
-    });
-    
+        if($('.contrastOuter').length==0){
+            return false;
+        }
+        $('.contrastRight').css('height',INITHEIGHT);
+        $('.right').find('.scale').text('100%');
+    });   
 }
+/**
+ * 设置标尺高等
+ * @param {Number} addIndex  0加，1减
+ * @param {Number} leftIndex 0左，1右
+ * @author huangh@chsi.com.cn 20170606
+ */
+function setContrastHeight(addIndex,leftIndex,text){
+    var n = parseInt(text) ,
+        MULTIPLE = 20 ,
+        MAXN = 300,
+        MINN = 100;
+    if(addIndex===0){
+        n += MULTIPLE ;
+    }else if(addIndex===1){
+        n -= MULTIPLE ;
+    }
+    n = n<MINN?MINN:n;
+    n = n>MAXN?MAXN:n;
+    if(leftIndex===0){
+        $('.contrastLeft').height(parseInt(n*INITHEIGHT/100));
+        $('.left').find('.scale').text(n+"%");
+    }else if(leftIndex===1){
+        $('.contrastRight').height(parseInt(n*INITHEIGHT/100));
+        $('.right').find('.scale').text(n+"%");
+    }
+};
 /**
  * 移动左右标尺
  * @author huangh@chsi.com.cn 20170602
@@ -323,37 +362,37 @@ function moveContrast(){
              y1 = y2;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty(); 
         }
-    }).delegate('.contrastClose','click',function(){
+    })
+   /* .delegate('.contrastClose','click',function(){
         MoveFlag = false;
         $('.contrastOuter').hide();
-    });
+    });*/
 }
 /**
  * 设置标尺一起移动
  * @param {Number} dir 标尺移动方向，0标尺一起往上，1标尺一起往下，2左边标尺往下走，3右边标尺往下走。
- * @author huangh@chsi.com.cn 20170602
+ * @author huangh@chsi.com.cn 20170606
  */
 function setContrastMove(dir){
     var $left = $('.contrastLeft'),
         $right = $('.contrastRight'),
         left = parseInt($left.css('top')),
         right = parseInt($right.css('top')),
-        DISTANCE = 20 ,
         cLeftHeight = $('.contrastLeft').height(),
         cRightHeight = $('.contrastRight').height(),
         height = $(window).height() - (cLeftHeight>cRightHeight?cRightHeight:cLeftHeight) -5;
     if(dir === 0){
-        left -= DISTANCE ;  
-        right -= DISTANCE ;  
+        left -= INITHEIGHT ;  
+        right -= INITHEIGHT ;  
     }else if(dir === 1){
-        left += DISTANCE ;  
-        right += DISTANCE ;  
+        left += INITHEIGHT ;  
+        right += INITHEIGHT ;  
     }else if(dir === 2){
-        left += DISTANCE ;  
+        left += INITHEIGHT ;  
         right = right;
     }else if(dir === 3){  
         left = left;
-        right += DISTANCE ;  
+        right += INITHEIGHT ;  
     }
     left = left<5?5:left;
     right = right<5?5:right;

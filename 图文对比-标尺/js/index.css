@@ -36,7 +36,7 @@ i{
 	width: 100%; position: relative;
 }
 .showImg1 a{
-	position: absolute; width: 70px; height: 100%; top: 0; background-color: #a3c3cb; transition: all 0.5s;
+	position: absolute; width: 50px; height: 100%; top: 0; background-color: #a3c3cb; transition: all 0.5s;
 }
 .showImg1 a:hover{
 	background-color: #e6e6e6;
@@ -63,7 +63,7 @@ i{
 	background-position: -46px 0;
 }
 .showImg1 .imgBox1{
-	position: absolute; width: calc(100% - 144px); height: calc(100% - 4px); left: 72px; top: 2px; overflow: hidden;
+	position: absolute; width: calc(100% - 104px); height: calc(100% - 4px); left: 52px; top: 2px; overflow: hidden;
 }
 .showImg1 .imgBox1 .img1{
 	position: absolute; display: block;cursor: pointer;

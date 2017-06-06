@@ -21,7 +21,7 @@ $(document).ready(function(){
 		$imgListBox1 = $('.imgListBox1'),
 		$imgList1 = $('.imgList1');
 	//container2-fullscreen对象
-	var $con2 = $('.container2'),
+/*	var $con2 = $('.container2'),
 		$select = $('.select'),
 		$btnStart = $('.btnStart'),
 		$btnStop = $('.btnStop'),
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		$chooseImg2_btnLeft = $('.chooseImg2_btnLeft'),
 		$chooseImg2_btnRight = $('.chooseImg2_btnRight'),
 		$imgListBox2 = $('.imgListBox2'),
-		$imgList2 = $('.imgList2');
+		$imgList2 = $('.imgList2');*/
 		
 	var winW = $win.width(),
 		winH = $win.height();
@@ -82,10 +82,10 @@ $(document).ready(function(){
 				'width': winW,
 				'height': winH
 			});
-			$con2.css({
-				'width': winW,
-				'height': winH
-			});
+//			$con2.css({
+//				'width': winW,
+//				'height': winH
+//			});
 		},
 		//设置图片控制区高
 		setShowImg1_height: function(){
@@ -266,205 +266,7 @@ $(document).ready(function(){
 	};
 	imgListEvent.init();
 	
-	/*
-	 * container2
-	 */
-	var $liActive_2;
-	var timer2;
-	function setImg2(src){
-		$imgBox2;
-		$img2;
-		var bW,bH,mW,mH;
-		var img = new Image();
-		$img2.attr('src',src);
-		img.onload = function(){
-			mW = img.width;
-			mH = img.height;
-			bW = $imgBox2.width();
-			bH = $imgBox2.height();
-			setPosition();
-		};
-		img.src = src;
-		function setPosition(){
-			var sScale = Math.min(bW/mW,bH/mH);
-			if( sScale>=1 ){
-				$img2.css({
-					'width': mW,
-					'height': mH,
-					'left': (bW-mW)/2,
-					'top': (bH-mH)/2
-				});
-			}else{
-				$img2.css({
-					'width': mW*sScale,
-					'height': mH*sScale,
-					'left': (bW-mW*sScale)/2,
-					'top': (bH-mH*sScale)/2
-				});
-			};
-		};
-	};
-	var fullScreen = {
-		init: function(){
-			this.addImg();
-			this.addClick();
-		},
-		addImg: function(){
-			var str = ''
-			for( var i=0; i<imgData.length; i++ ){
-				var tmp = imgData[i];
-				str += '<li style="background-image:url('+ tmp.src +')" ></li>'
-			};
-			$imgList2.append(str);
-			$imgList2.css({
-				'width': 115*imgData.length
-			});
-		},
-		addClick: function(){
-			var self = this;
-			$imgList2.find('li').on('click',function(){
-				if( $liActive_2 ) $liActive_2.removeClass('active');
-				index = $(this).index();
-				$(this).addClass('active');
-				$liActive_2 = $(this);
-				self.imgList2_position();
-				setImg2( imgData[index]['src'] );
-			});
-			$showImg2_btnRight.on('click',function(){
-				$liActive_2.next().trigger('click');
-			});
-			$showImg2_btnLeft.on('click',function(){
-				$liActive_2.prev().trigger('click');
-			});
-			$chooseImg2_btnLeft.on('click',function(){
-				var w = $imgListBox2.width();
-				var le = parseInt($imgList2.css('left')) + w;
-				if( le > 0 ) le = 0;
-				$imgList2.css({
-					'left': le
-				})
-			});
-			$chooseImg2_btnRight.on('click',function(){
-				var w = $imgListBox2.width();
-				var minLe = w - $imgList2.width();
-				var le = parseInt($imgList2.css('left')) - w;
-				if( le <  minLe ) le = minLe;
-				$imgList2.css({
-					'left': le
-				})
-			});
-			$btnExitFullScreen.on('click',function(){
-				self.exitFull();
-			});
-		},
-		imgList2_position: function(){
-			var boxWidth2 = $imgListBox2.width();
-			var le = (boxWidth2/2 - index*115);
-			le = Math.floor(le/115)*115;
-			le = le>=0?0:le;
-			var maxLe = (boxWidth2-$imgList2.width());
-			le = le<maxLe?maxLe:le;
-			$imgList2.css({
-				'left': le
-			});
-		},
-		enterFull: function(){
-			var self = this;
-			enterFullscreen();
-			$con1.css('opacity','0');
-			$con2.show();
-			setTimeout(function(){
-				$imgList2.find('li').eq(index).trigger('click');
-			},500);
-			//esc keyCode:27
-			$(document).on('keyup.a',function(e){
-				if( e.keyCode == 27 ){
-					self.exitFull();
-				};
-			});
-		},
-		exitFull: function(){
-			clearInterval(timer2);
-			$(document).off('keyup.a');
-			$con1.css('opacity','1');
-			$con2.hide();
-			animateEvent.showStart();
-			setTimeout(function(){
-				$imgList1.find('li').eq(index).trigger('click');
-			},500);
-			exitFullscreen();
-		}
-	};
-	fullScreen.init();
-//	fullScreen.enterFull();
-	
-	//定时器
-	var animateEvent = {
-		init: function(){
-			var self = this;
-			$btnStart.on('click',function(){
-				self.start();
-			});
-			$btnStop.on('click',function(){
-				self.stop();
-			});
-			$select.on('change',function(){
-				self.start();
-			});
-		},
-		start: function(){
-			this.showStop();
-			var intervalTime = parseInt($select.val())*1000;
-			clearInterval(timer2);
-			timer2 = setInterval(function(){
-				$liActive_2.next().trigger('click');
-			},intervalTime);
-		},
-		stop: function(){
-			clearInterval(timer2);
-			this.showStart();
-		},
-		showStart: function(){
-			clearInterval(timer2);
-			$select.show().val('2');
-			$select.hide();
-			$btnStop.hide();
-			$btnStart.show();
-		},
-		showStop: function(){
-			$btnStart.hide();
-			$btnStop.show();
-			$select.show();
-		}
-	};
-	animateEvent.init();
-	
-	/*
-	 * 全屏事件
-	 */
-	// 判断各种浏览器
-	function enterFullscreen() {
-		var element = document.documentElement;
-		if (element.requestFullscreen) {
-			element.requestFullscreen();
-		} else if (element.mozRequestFullScreen) {
-			element.mozRequestFullScreen();
-		} else if (element.webkitRequestFullscreen) {
-			element.webkitRequestFullscreen();
-		} else if (element.msRequestFullscreen) {
-			element.msRequestFullscreen();
-		}
-	}
-	// 判断浏览器种类
-	function exitFullscreen() {
-		if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		}
-	}
+
 });
 
 

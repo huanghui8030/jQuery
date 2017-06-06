@@ -257,10 +257,15 @@ $(function(){
     moveContrast()
     //键盘事件
     $(document).keydown(function(e){ 
-        if(e.keyCode == 38){
+        console.log(e.keyCode);
+        if(e.keyCode == 38 && e.shiftKey){ //shift+up
             setContrastMove(0);
-        }else if(e.keyCode == 40){
+        }else if(e.keyCode == 40 && e.shiftKey ){ //shift+down
             setContrastMove(1);
+        }else if(e.keyCode == 76 && e.shiftKey){ //shift+l
+            setContrastMove(2);
+        }else if(e.keyCode == 82 && e.shiftKey){ //shift+r
+            setContrastMove(3);
         }
     });  
 })
@@ -325,7 +330,7 @@ function moveContrast(){
 }
 /**
  * 设置标尺一起移动
- * @param {Number} dir 标尺移动方向，0为上，1位下。
+ * @param {Number} dir 标尺移动方向，0标尺一起往上，1标尺一起往下，2左边标尺往下走，3右边标尺往下走。
  * @author huangh@chsi.com.cn 20170602
  */
 function setContrastMove(dir){
@@ -342,6 +347,12 @@ function setContrastMove(dir){
         right -= DISTANCE ;  
     }else if(dir === 1){
         left += DISTANCE ;  
+        right += DISTANCE ;  
+    }else if(dir === 2){
+        left += DISTANCE ;  
+        right = right;
+    }else if(dir === 3){  
+        left = left;
         right += DISTANCE ;  
     }
     left = left<5?5:left;

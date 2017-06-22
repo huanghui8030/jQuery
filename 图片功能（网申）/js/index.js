@@ -1,40 +1,16 @@
-//var imgData='';
+
 $(document).ready(function(){
 	var $win = $(window),
 		$con1 = $('.container1'),
 		$main1 = $('.main1'),
 		$showImg1 = $('.showImg1'),
-		$showImg1_btnLeft = $('.showImg1_btnLeft'),
-		$showImg1_btnRight = $('.showImg1_btnRight'),
 		$imgBox1 = $('.imgBox1'),
 		$img1 = $('.img1'),
-		$showImg1_btnLeft = $('.showImg1_btnLeft'),
-		$showImg1_btnRight = $('.showImg1_btnRight'),
-		$chooseImg1_btnLeft = $('.chooseImg1_btnLeft'),
-		$chooseImg1_btnRight = $('.chooseImg1_btnRight'),
 		$chooseImg1_box = $('.chooseImg1_box'),
 		$scale1 = $('.scale1'),
 		$btnImgInit1 = $('.btnImgInit1'),
-		$btnImgFullScreen = $('.btnImgFullScreen'),
-		
-		$sider1 = $('.sider1'),
-		$imgListBox1 = $('.imgListBox1'),
-		$imgList1 = $('.imgList1');
-	//container2-fullscreen对象
-/*	var $con2 = $('.container2'),
-		$select = $('.select'),
-		$btnStart = $('.btnStart'),
-		$btnStop = $('.btnStop'),
-		$btnExitFullScreen = $('.btnExitFullScreen'),
-		$imgBox2 = $('.imgBox2'),
-		$img2 = $('.img2'),
-		$showImg2_btnLeft = $('.showImg2_btnLeft'),
-		$showImg2_btnRight = $('.showImg2_btnRight'),
-		$chooseImg2_btnLeft = $('.chooseImg2_btnLeft'),
-		$chooseImg2_btnRight = $('.chooseImg2_btnRight'),
-		$imgListBox2 = $('.imgListBox2'),
-		$imgList2 = $('.imgList2');*/
-		
+		$btnImgLeft = $('.btnImgLeft'),
+		$btnImgRight = $('.btnImgRight');
 	var winW = $win.width(),
 		winH = $win.height();
 	//图片处理事件
@@ -61,7 +37,6 @@ $(document).ready(function(){
 				winH = $win.height();
 				containEvent.setCon();
 				containEvent.setShowImg1_height();
-				imgListEvent.imgList1_position();
 				h1.setBoxWH();
 			});
 		}
@@ -82,70 +57,24 @@ $(document).ready(function(){
 				'width': winW,
 				'height': winH
 			});
-//			$con2.css({
-//				'width': winW,
-//				'height': winH
-//			});
 		},
 		//设置图片控制区高
 		setShowImg1_height: function(){
 			$showImg1.css({
 				'height': $main1.height() - $chooseImg1_box.height()
 			})
-		},
-		showText: function(data){
-			$('.pTroTit1').text(data['src']);
-			$('.pTroName1').text(data['title']);
 		}
 	};
 	containEvent.init();
 	
 	//图片选择	普通的width：70+10, 选中active：80+10
-	var $liActive_1;
 	var index = 0;
 	var imgListEvent = {
 		init: function(){
-			this.imgList1_add();
-			this.imgList1_click();
+			handle.setImg1( $('.imgBox1 .img1').attr('src') );
 			this.scaleEvent();
 			this.mouseWheelEvent();
 			this.fnClick();
-		},
-		imgList1_add: function(){
-			var str = ''
-			for( var i=0; i<imgData.length; i++ ){
-				var tmp = imgData[i];
-				str += '<li style="background-image:url('+ tmp.src +')" ></li>'
-			};
-			$imgList1.append(str);
-			$imgList1.css({
-				'width': (82)*imgData.length + 10
-			});
-		},
-		imgList1_click: function(){
-			var self = this;
-			$imgList1.find('li').on('click',function(){
-				if( $liActive_1 ) $liActive_1.removeClass('active');
-				index = $(this).index();
-				$(this).addClass('active');
-				$liActive_1 = $(this);
-				self.imgList1_position();
-				handle.setImg1( imgData[index]['src'] );
-				containEvent.showText( imgData[index] );
-			});
-			$imgList1.find('li').eq(0).trigger('click');
-		},
-		imgList1_position: function(){
-			var boxWidth1 = $imgListBox1.width();
-			var le = (boxWidth1/2 - index*80);
-			le = Math.floor(le/80)*80;
-			le = le>=0?0:le;
-			var maxLe = (boxWidth1-$imgList1.width())+10;
-			le = le<maxLe?maxLe:le;
-            le = le>10?0:le;
-			$imgList1.css({
-				'left': le
-			})
 		},
 		scaleEvent: function(){
 			var timer = null;
@@ -233,41 +162,29 @@ $(document).ready(function(){
 			$scale1.text(scale+'%');
 		},
 		fnClick: function(){
-			$showImg1_btnRight.on('click',function(){
-				$liActive_1.next().trigger('click');
-			});
-			$showImg1_btnLeft.on('click',function(){
-				$liActive_1.prev().trigger('click');
-			});
-			$chooseImg1_btnLeft.on('click',function(){
-				var w = $imgListBox1.width();
-				var le = parseInt($imgList1.css('left')) + w;
-				if( le > 0 ) le = 0;
-				$imgList1.css({
-					'left': le
-				})
-			});
-			$chooseImg1_btnRight.on('click',function(){
-				var w = $imgListBox1.width();
-				var minLe = w - $imgList1.width();
-				var le = parseInt($imgList1.css('left')) - w;
-				if( le <  minLe ) le = minLe;
-				$imgList1.css({
-					'left': le
-				})
-			});
 			$btnImgInit1.on('click',function(){
-				handle.setImg1( imgData[index]['src'], true );
+                handle.setImg1( $('.imgBox1 .img1').attr('src'), true );
 			});
-			$btnImgFullScreen.on('click',function(){
-				fullScreen.enterFull();
+            $btnImgLeft.on('click',function(){
+                var $img = $('.imgBox1 .img1');
+                var rotate = parseInt($img.attr('rotate')) || 0;
+                rotate -= 90;
+                $img.attr('rotate',rotate);
+                $img.css('transform','rotate(' + rotate + 'deg)');
+			});
+            $btnImgRight.on('click',function(){
+                var $img = $('.imgBox1 .img1');
+                var rotate = parseInt($img.attr('rotate')) || 0;
+                rotate += 90;
+                $img.attr('rotate',rotate);
+                $img.css('transform','rotate(' + rotate + 'deg)');
+                
 			});
 		}
 	};
 	imgListEvent.init();
-	
-
 });
+
 
 
 

@@ -1,0 +1,84 @@
+
+/* common */
+*{
+	margin: 0; padding: 0;
+}
+body,html{
+	font-family: "微软雅黑"; font-size: 14px; overflow: hidden;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none; color: #000;
+}
+.btnIco{
+	background: url(../images/btn.png);
+}
+b{
+	font-weight: normal;
+}
+i{
+	font-style: normal;
+}
+
+/* container1 */
+.container1{
+	width: 100%; height: 100%; background-color: #fff; position: absolute; min-width: 1000px; min-height: 400px; -display: none;
+}
+.main1{
+	position: absolute; width: calc(100% - 710px); height: calc(100% - 5px); left: 0; top: 5px; background-color: #eee;
+}
+.sider1{
+	position: absolute; width: 700px; margin-left: 10px; height: calc(100% - 5px); overflow-x: hidden; overflow-y: auto; top: 5px; right: 0px; background-color: #eee;
+}
+.showImg1{
+	width: 100%; position: relative;
+}
+
+.showImg1 .imgBox1{
+	position: absolute; width: calc(100% - 104px); height: calc(100% - 4px); left: 52px; top: 2px; overflow: hidden;
+}
+.showImg1 .imgBox1 .img1{
+	position: absolute; display: block;cursor: pointer;
+}
+.chooseImg1_box{
+	position: relative; overflow: hidden;
+}
+.navList1{
+	height: 38px; line-height: 38px; border-top: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; text-align: center; font-size: 14px;
+}
+.navList1 span{
+	margin-left: -3px;
+}
+.navList1 span, .navList1 a{
+	display: inline-block; color: #666; padding: 0 10px; cursor: pointer; position: relative;
+}
+.navList1 span:before{
+	content: '|'; display: block; position: absolute; left: -3px; color: #e3e3e3;
+}
+.navList1 span:hover:before{
+	display: none;
+}
+.navList1 span:last-child:after{
+	content: '|'; display: block; position: absolute; right: 1px; color: #e3e3e3;top:0;
+}
+.navList1 span:hover, .navList1 a:hover{
+	background-color: #e3e3e3;
+}
+.navList1 .btnImgScale, .navList1 .btnImgScale:hover{
+	cursor: default; background-color: #fff; padding: 0;
+}
+.navList1 a{
+	padding: 0; width: 30px;
+}
+
+
+
+
+
+
+
+
+
+

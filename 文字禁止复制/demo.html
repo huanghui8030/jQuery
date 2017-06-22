@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文字禁止复制</title>
+</head>
+<body>
+   <p>
+       页面内容不让复制，文字禁止复制。文字禁止复制。
+   </p>
+    <p>
+       页面内容不让复制，文字禁止复制。文字禁止复制。
+   </p><p>
+       页面内容不让复制，文字禁止复制。文字禁止复制。
+   </p><p>
+       页面内容不让复制，文字禁止复制。文字禁止复制。
+   </p>
+<script>
+document.onkeydown=function(){
+    if(event.ctrlKey||event.altKey){
+          event.returnValue=false;
+    }
+}
+document.onmousedown=function(){
+    if(event.button==2){
+        event.returnValue=false;
+    }
+}
+document.oncontextmenu = function(){
+    event.returnValue = false;
+}
+document.onselectstart = function(){
+    return false;
+}
+
+document.oncopy = function(){
+    event.returnValue = false;
+}
+
+</script>
+</body>
+</html>

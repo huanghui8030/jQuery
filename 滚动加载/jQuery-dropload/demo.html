@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="all" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="pragma" Content="no-cach" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
+    <meta name="description" content="" />
+    <meta name="HandheldFriendly" content="true" />
+
+    <title>HTML5手机端手指滑动上拉加载代码</title>
+
+    <link type="text/css" media="all" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" media="all" rel="stylesheet" href="css/dropload.css">
+
+</head>
+
+<body>
+    <article class="khfxWarp">
+        <section class="khfxPane" style="display:block">
+        </section>
+    </article>
+
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="lib/dropload.js"></script>
+    <script>
+    $(function () {
+    var tabLoadEndArray = false;
+    var tabLenghtArray = 128;
+    
+    // dropload
+    var dropload = $('.khfxWarp').dropload({
+        scrollArea: window,
+        domDown: {
+            domClass: 'dropload-down',
+            domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
+            domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+            domNoData: '<div class="dropload-noData">已无数据</div>'
+        },
+        loadDownFn: function (me) {
+            setTimeout(function () {
+                if (tabLoadEndArray) {
+                    me.resetload();
+                    me.lock();
+                    me.noData();
+                    me.resetload();
+                    return;
+                }
+                var result = '';
+                for (var index = 0; index < 10; index++) {
+                    if (tabLenghtArray > 0) {
+                        tabLenghtArray --;
+                    } else {
+                        tabLoadEndArray = true;
+                        break;
+                    }
+                    result += ''
+                        + '    <hgroup class="khfxRow">'
+                        + '      <header>2015-10-18  23:32:13</header>'
+                        + '      <div class="mid">'
+                        + '        <img class="photo" src="images/img01.png" >'
+                        + '        <span><label>昵称：</label>弦上漫步</span> '
+                        + '        <span><label>账号：</label>' + tabLenghtArray + '</span> '
+                        + '        <span><label>手机：</label>1391****746</span> '
+                        + '        <span><label>券商：</label>中信证券</span> '
+                        + '      </div>'
+                        + '      <footer><a href="#">提醒开户</a></footer>'
+                        + '    </hgroup>';
+                }
+                $('.khfxPane').append(result);
+                me.resetload();
+            }, 500);
+        }
+    });
+
+});
+    
+    
+    </script>
+
+
+</body>
+
+</html>

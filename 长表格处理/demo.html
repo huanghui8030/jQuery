@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>表格demo</title>
+    <script src="https://t1.chei.com.cn/common/js/vue/2.5.6/vue.min.js"></script>
+    <style>
+    *{padding:0;margin: 0}
+    .table-lists{
+        width: 500px;margin :50px auto;
+    } 
+    .table-lists table{
+        width: 100%;border-collapse: collapse; 
+    }
+    .table-lists th,.table-lists td{
+        border:1px solid #ccc;line-height: 1.5;padding: 6px;font-size: 14px;
+    }
+    .table-menu{
+        position: absolute;z-index: 999;background: #ccc;
+    }
+    </style>
+</head>
+<body>
+    <div id='root' class="table-lists">
+        <table id='table'>
+            <thead>
+                <th>序号</th><th>名称</th><th>分类</th><th>描述</th><th>地址</th><th>店铺</th><th>店铺ID</th>
+            </thead>
+            <tbody>
+                <tr v-for='data in tableData'>
+                    <td>{{data.id}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.category}}</td>
+                    <td>{{data.desc}}</td>
+                    <td>{{data.address}}</td>
+                    <td>{{data.shop}}</td>
+                    <td>{{data.shopId}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id='right' style="display: none" class="table-menu">
+            <ul>
+                <li><input type="checkbox" name="tableRightMenu">序号</li>
+                <li><input type="checkbox" name="tableRightMenu">名称</li>
+                <li><input type="checkbox" name="tableRightMenu">分类</li>
+                <li><input type="checkbox" name="tableRightMenu">描述</li>
+                <li><input type="checkbox" name="tableRightMenu">地址</li>
+                <li><input type="checkbox" name="tableRightMenu">店铺</li>
+                <li><input type="checkbox" name="tableRightMenu">店铺ID</li>
+            </ul>
+        </div>
+    </div>
+
+
+<script>
+var app = new Vue({
+    el: '#root',
+    data: {
+        tableData:[{
+          id: '12987121',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        },{
+          id: '12987122',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        },{
+          id: '12987122',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        },{
+          id: '12987122',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        },{
+          id: '12987122',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        },{
+          id: '12987122',
+          name: '好滋好味鸡蛋仔',
+          category: '江浙小吃、小吃零食',
+          desc: '荷兰优质淡奶，奶香浓而不腻',
+          address: '上海市普陀区真北路',
+          shop: '王小虎夫妻店',
+          shopId: '10333'
+        }]
+    }
+});  
+</script>
+<script src="https://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+<script src="table-remove.js"></script>
+<script>
+TableRmove('table','right')
+</script>
+</body>
+</html>

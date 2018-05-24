@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>account</title>
+    <link rel="stylesheet" href="https://t1.chei.com.cn/common/wap/weui/weui.min.css">
+    <link rel="stylesheet" href="https://t1.chei.com.cn/common/wap/jquery-weui/1.0.1/css/jquery-weui.css">
+    <style>
+    body {
+        background-color: #f7f7f7;
+    }
+    a {
+        color: #518bec;
+    }
+    .header {
+        height: 50px;
+        line-height: 50px;
+    }
+    .header h1 {
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        background-color: #fff;
+        text-align: center;
+        font-weight: 400;
+        border-bottom: 1px solid #e5e5e5;
+        background:
+    }
+    .header .go-back {
+        text-align: center;
+        color: #656565;
+        position: absolute;
+        left: 0px;
+        display: inline-block;
+        width: 30px;
+    }
+    .top-tips {
+        line-height: 3;
+        font-size: 14px;
+        text-align: center;
+        color: #999;
+    }
+    .top-tips .detail {
+        color: #518bec;
+    }
+    .weui-cells {
+        margin-top: 0;
+        margin-bottom: 1.2em;
+    }
+    .weui-dialog__bd {
+        line-height: 1.8;
+        text-align: left;
+        font-size: 13px;
+    }
+    .btn-light {
+        background: #ffffff;
+        border-radius: 20px;
+        line-height: 2;
+        cursor: pointer;
+        border: 1px solid #4f96b2;
+        color: #4f96b2;
+        padding: 0px 10px;
+        outline: none;
+    }
+    .weui-btn_primary {
+        color: #fff;
+        background: #2fafbc;
+        border-radius: 0;
+        margin: 20px;
+    }
+    .weui-btn_primary:hover, .weui-btn_primary:not(.weui-btn_disabled):active {
+        background-color: #5bd0dc;
+    }
+    .weui-btn_primary:after {
+        border-radius: 0;
+        border: 0;
+    }
+    .weui-dialog__hd{padding:1em 1em .5em;}
+    .weui-dialog__ft{line-height: 40px;}
+    .weui-dialog__ft .weui-dialog__btn{
+        color: #fff;
+        background: #2fafbc;
+        margin: 0 20px 20px;cursor: pointer;
+    }
+    .weui-dialog__ft:after{
+        content: '';
+        border-top :0;
+    }
+    .toolbar .picker-button{
+        color: #2fafbc;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1><a href="/" class="go-back"><</a>注册学信网账号</h1>
+    </div>
+    <p class="top-tips">“学信网账号”可用于登录学信网各服务平台。<span class="detail">详情</span></p>
+    <p class="regist-tip-detail" style="display: none">
+        支持的平台有：<a href="http://my.chsi.com.cn/" target="_blank">学信档案</a>（含图像校对、学籍信息核对等）、<a href="http://yz.chsi.com.cn/" target="_blank">中国研究生招生信息网</a>、<a href="https://gaokao.chsi.com.cn/zzbm/" target="_blank">高考特殊类型招生报名平台</a>、<a href="https://www.gfbzb.gov.cn/" target="_blank">全国征兵网</a>、<a href="http://job.chsi.com.cn/" target="_blank">学信就业</a>、<a href="http://www.gatzs.com.cn/" target="_blank">内地（祖国大陆）高校面向港澳台招生信息网</a>、<a href="http://xz.chsi.com.cn" target="_blank">学职平台</a>、<a href="http://cy.ncss.org.cn/" target="_blank">全国大学生创业服务网</a>等。如果您在使用这些服务时注册过账号，则可凭此账号使用其他服务，例如：如果您进行过图像校对，则可凭此账号进行“研招网上报名”、“兵役登记”、“应征入伍”等，而无需再次注册账号。
+    </p>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="验证码">
+            </div>
+            <input type="button" name='btn' value="免费获取" class="btn-light">
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请设置密码">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="真实姓名">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" id='zjhm' type="text" placeholder="身份证号">
+            </div>
+            <input type="button" id="zjhm-change" value="切换类型 >">
+        </div>
+    </div>
+    <a href="javascript:;" class="weui-btn weui-btn_primary">按钮</a>
+    <script src="https://t1.chei.com.cn/common/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://t1.chei.com.cn/common/wap/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+    <script>
+    $(function() {
+        $('.detail').click(function() {
+            var html = $('.regist-tip-detail').html();
+            $.alert({
+                title: "支持的平台",
+                text: html,
+                buttons: [{
+                    text: "知道了",
+                    className: "primary"
+                }]
+            });
+        })
+        //切换类型
+        $("#zjhm-change").picker({
+            title: "请证件号切换类型",
+            cols: [{
+                textAlign: 'center',
+                values: ['居民身份证', '港澳台身份证', '华侨身份证/Passport(无身份证者可填护照号)', '其他']
+            }],
+            onChange: function() {
+                this.input.value = '切换类型 >';
+            },
+            onClose:function(){
+                $('#zjhm').attr('placeholder',this.input.value);
+                this.input.value = '切换类型 >';
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

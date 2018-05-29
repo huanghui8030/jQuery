@@ -1,30 +1,85 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>表格demo</title>
     <script src="https://t1.chei.com.cn/common/js/vue/2.5.6/vue.min.js"></script>
     <style>
-    *{padding:0;margin: 0}
-    .table-lists{
-        width: 500px;margin :50px auto;
-    } 
-    .table-lists table{
-        width: 100%;border-collapse: collapse; 
+    * {
+        padding: 0;
+        margin: 0
     }
-    .table-lists th,.table-lists td{
-        border:1px solid #ccc;line-height: 1.5;padding: 6px;font-size: 14px;
+    .table-lists {
+        width: 500px;
+        margin: 50px auto;
     }
-    .table-menu{
-        position: absolute;z-index: 999;background: #ccc;
+    .table-lists table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table-lists th, .table-lists td {
+        border: 1px solid #ccc;
+        line-height: 1.5;
+        padding: 6px;
+        font-size: 14px;
+    }
+    #menu-right {
+        position: absolute;
+        z-index: 999;
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    #menu-right:after, #menu-right:before {
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        left: 100%;
+        position: absolute;
+        width: 0;
+    }
+    #menu-right:after {
+        border-width: 10px;
+        border-right-color: #fff;
+        top: 20px;
+        left: -20px;
+    }
+    #menu-right:before {
+        border-width: 12px;
+        border-right-color: #ccc;
+        top: 18px;
+        left: -24px;
+    }
+
+    #menu-right h3 {
+        font-size: 14px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 6px;
+    }
+    #menu-right ul {
+        list-style: none;
+        line-height: 1.8;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    #menu-right input[type='checkbox'] {
+        margin-right: 5px;
     }
     </style>
 </head>
+
 <body>
     <div id='root' class="table-lists">
         <table id='table'>
             <thead>
-                <th>序号</th><th>名称</th><th>分类</th><th>描述</th><th>地址</th><th>店铺</th><th>店铺ID</th>
+                <th>序号</th>
+                <th>名称</th>
+                <th>分类</th>
+                <th>描述</th>
+                <th>地址</th>
+                <th>店铺</th>
+                <th>店铺ID</th>
             </thead>
             <tbody>
                 <tr v-for='data in tableData'>
@@ -38,80 +93,68 @@
                 </tr>
             </tbody>
         </table>
-        <div id='right' style="display: none" class="table-menu">
-            <ul>
-                <li><input type="checkbox" name="tableRightMenu">序号</li>
-                <li><input type="checkbox" name="tableRightMenu">名称</li>
-                <li><input type="checkbox" name="tableRightMenu">分类</li>
-                <li><input type="checkbox" name="tableRightMenu">描述</li>
-                <li><input type="checkbox" name="tableRightMenu">地址</li>
-                <li><input type="checkbox" name="tableRightMenu">店铺</li>
-                <li><input type="checkbox" name="tableRightMenu">店铺ID</li>
-            </ul>
-        </div>
     </div>
-
-
-<script>
-var app = new Vue({
-    el: '#root',
-    data: {
-        tableData:[{
-          id: '12987121',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }]
-    }
-});  
-</script>
-<script src="https://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
-<script src="table-remove.js"></script>
-<script>
-TableRmove('table','right')
-</script>
+    <script>
+    var app = new Vue({
+        el: '#root',
+        data: {
+            tableData: [{
+                id: '12987121',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }, {
+                id: '12987122',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }, {
+                id: '12987122',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }, {
+                id: '12987122',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }, {
+                id: '12987122',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }, {
+                id: '12987122',
+                name: '好滋好味鸡蛋仔',
+                category: '江浙小吃、小吃零食',
+                desc: '荷兰优质淡奶，奶香浓而不腻',
+                address: '上海市普陀区真北路',
+                shop: '王小虎夫妻店',
+                shopId: '10333'
+            }]
+        }
+    });
+    </script>
+    <script src="https://t1.chei.com.cn/common/jquery/1.9.1/jquery.min.js"></script>
+    <script src="table-remove.js"></script>
+    <script>
+    TableRmove('table'); //tableid
+    </script>
 </body>
+
 </html>

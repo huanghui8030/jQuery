@@ -1,15 +1,30 @@
 /**
  * 长表格处理：表头可拖动改变宽度；右键菜单可选择需要隐藏的列。
  * @param {String} id      表格id
- * @param {String} rightID 右键菜单的id
  * huanghui 20180524
  */
-function TableRmove(id,rightID) {
+function TableRmove(id) {
     var table = document.getElementById(id), //表格
+        rightID = 'right',
         tableTr = table.rows[0], //表头
         tTD,   //用来存储当前更改宽度的Table Cell
-        forRight = document.getElementById(rightID),
-        menuArr = []; //需要隐藏的列
+        menuArr = []
+        $table = $("#"+id); //需要隐藏的列
+
+    var thArr = [];
+    $table.find('thead th').each(function(){
+        thArr.push($.trim($(this).text()));
+    });
+
+    var menuHtml = "<div id='menu-right' style='display: none'>"
+                + "<h3>隐藏选择列</h3>"
+                + "<ul><li>";
+    for (var i = 0; i < thArr.length; i++) {
+        menuHtml += '<input type="checkbox" name="tableRightMenu">'+thArr[i] +'</li><li>' ; 
+    }
+    menuHtml += '</ul></div>' ;
+    $table.parent().append(menuHtml);
+
     for (j = 0; j < tableTr.cells.length; j++) {
 
         tableTr.cells[j].onmousedown = function(event) { //记录单元格
@@ -70,7 +85,7 @@ function TableRmove(id,rightID) {
             !($target.parent().parent().attr('id')
                 ||$target.parent().attr('id'))
         ){
-            forRight.style.display = "none";  
+            $('#menu-right').css('display','none');
             for (var i = 0; i < table.rows.length; i++) {
                 var tr = table.rows[i];
                 for (var j = 0; j < tr.cells.length; j++) {
@@ -82,13 +97,17 @@ function TableRmove(id,rightID) {
             }
         }
     };
-    //右键
+    //右键，位置固定，在目标元素的右侧。
     tableTr.oncontextmenu =function(event){
-        var event = event || window.event;
-        forRight.style.display = "block";  
-        //菜单定位  
-        forRight.style.left = event.pageX+"px";  
-        forRight.style.top = event.pageY+"px";  
+        var $target = $((event || window.event).target);
+        var offset = $target.offset(),
+            top = offset.top - 6,
+            left = offset.left + $target.width() 
+        $('#menu-right').css({
+            'display':'block',
+            'left': left + "px",
+            'top':  top + "px"
+        }); 
         //return false为了屏蔽默认事件  
         return false;  
     }

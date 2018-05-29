@@ -7,22 +7,22 @@ function TableRmove(id) {
     var table = document.getElementById(id), //表格
         rightID = 'right',
         tableTr = table.rows[0], //表头
-        tTD,   //用来存储当前更改宽度的Table Cell
+        tTD, //用来存储当前更改宽度的Table Cell
         menuArr = []
-        $table = $("#"+id); //需要隐藏的列
+    $table = $("#" + id); //需要隐藏的列
 
     var thArr = [];
-    $table.find('thead th').each(function(){
+    $table.find('thead th').each(function() {
         thArr.push($.trim($(this).text()));
     });
 
-    var menuHtml = "<div id='menu-right' style='display: none'>"
-                + "<h3>隐藏选择列</h3>"
-                + "<ul><li>";
+    var menuHtml = "<div id='menu-right' style='display: none'>" +
+        "<h3>隐藏选择列</h3>" +
+        "<ul><li>";
     for (var i = 0; i < thArr.length; i++) {
-        menuHtml += '<input type="checkbox" name="tableRightMenu">'+thArr[i] +'</li><li>' ; 
+        menuHtml += '<input type="checkbox" name="tableRightMenu">' + thArr[i] + '</li><li>';
     }
-    menuHtml += '</ul></div>' ;
+    menuHtml += '</ul></div>';
     $table.parent().append(menuHtml);
 
     for (j = 0; j < tableTr.cells.length; j++) {
@@ -38,7 +38,7 @@ function TableRmove(id) {
         };
         tableTr.cells[j].onmouseup = function() {
             //结束宽度调整
-            if (tTD == undefined){
+            if (tTD == undefined) {
                 tTD = this;
             }
             tTD.mouseDown = false;
@@ -47,9 +47,9 @@ function TableRmove(id) {
         tableTr.cells[j].onmousemove = function(event) {
             var event = event || window.event;
             //更改鼠标样式
-            if (event.offsetX > this.offsetWidth - 10){
+            if (event.offsetX > this.offsetWidth - 10) {
                 this.style.cursor = 'col-resize';
-            }else{
+            } else {
                 this.style.cursor = 'default';
             }
             //取出暂存的Table Cell
@@ -59,7 +59,7 @@ function TableRmove(id) {
             //调整宽度
             if (tTD.mouseDown != null && tTD.mouseDown == true) {
                 tTD.style.cursor = 'default';
-                if (tTD.oldWidth + (event.x - tTD.oldX) > 0){
+                if (tTD.oldWidth + (event.x - tTD.oldX) > 0) {
                     tTD.width = tTD.oldWidth + (event.x - tTD.oldX);
                 }
                 //调整列宽
@@ -74,18 +74,18 @@ function TableRmove(id) {
                     table.rows[j].cells[tTD.cellIndex].width = tTD.width;
                 }
             }
-        };   
-    } 
+        };
+    }
 
 
-    document.onclick=function(event){  
+    document.onclick = function(event) {
         var event = event || window.event;
         var $target = $(event.target);
-        if($target[0].name !=='tableRightMenu' &&
-            !($target.parent().parent().attr('id')
-                ||$target.parent().attr('id'))
-        ){
-            $('#menu-right').css('display','none');
+        if ($target[0].name !== 'tableRightMenu' &&
+            !($target.parent().parent().attr('id') ||
+                $target.parent().attr('id'))
+        ) {
+            $('#menu-right').css('display', 'none');
             for (var i = 0; i < table.rows.length; i++) {
                 var tr = table.rows[i];
                 for (var j = 0; j < tr.cells.length; j++) {
@@ -98,36 +98,51 @@ function TableRmove(id) {
         }
     };
     //右键，位置固定，在目标元素的右侧。
-    tableTr.oncontextmenu =function(event){
+    tableTr.oncontextmenu = function(event) {
         var $target = $((event || window.event).target);
         var offset = $target.offset(),
             top = offset.top - 6,
-            left = offset.left + $target.width() 
+            left = offset.left + $target.width()
         $('#menu-right').css({
-            'display':'block',
+            'display': 'block',
             'left': left + "px",
-            'top':  top + "px"
-        }); 
+            'top': top + "px"
+        });
         //return false为了屏蔽默认事件  
-        return false;  
+        return false;
     }
 
     //菜单中的checkbox的change事件
-    $('input[name="tableRightMenu"]').change(function(e){
+    $('input[name="tableRightMenu"]').change(function(e) {
         var $this = $(this),
             index = $this.index('input'),
             $checkbox = $('input[name="tableRightMenu"]');
-        
-        if($this.is(':checked')){
+
+        if ($this.is(':checked')) {
             menuArr.push(index);
-        }else{
-            menuArr.splice(menuArr.indexOf(index),1);
+        } else {
+            menuArr.splice(menuArr.indexOf(index), 1);
         }
         //如果剩下最后一个，则不允许选择
-        if(menuArr.length === $checkbox.length-1){
-            $checkbox.not(':checked').attr('disabled',true);
-        }else{
+        if (menuArr.length === $checkbox.length - 1) {
+            $checkbox.not(':checked').attr('disabled', true);
+        } else {
             $checkbox.not(':checked').removeAttr('disabled');
         }
     });
- }
+    $(window).scroll(function(){
+        scrollLis(id);
+    });
+}
+
+function scrollLis(id) {
+    var $table = $('#'+id);
+    var toTop = $table.offset().top - $(window).scrollTop();
+    if (toTop <= 0) {
+        if (!$table.hasClass('table-fixed')) {
+            $table.addClass('table-fixed')
+        };
+    } else {
+        $table.removeClass('table-fixed');
+    }
+}
